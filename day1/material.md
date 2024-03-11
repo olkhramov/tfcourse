@@ -6,6 +6,12 @@ Terraform is a unique tool that allows you to manage your infrastructure as code
 
 Terraform is more than jsut a tool to manage your cloud infrastructure. While it's one of the main use cases, Terraform could manage anything, it's quite flexible.
 
+Before we start with the day 1 practice, it is strongly suggested to run `prepare.sh`:
+
+```bash
+chmod +x day1/prepare.sh
+./day1/prepare.sh
+```
 
 ## Configuration Language
 
