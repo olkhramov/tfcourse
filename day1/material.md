@@ -238,3 +238,5 @@ docker run --rm -it -p 9000:9000 -v $(pwd)/plan.json:/src/plan.json im2nguyen/ro
 7. Copy the file you created in step 2 to `day1/local` folder under different name.
 8. Create a script that would print a linux kernel version to stdout with `shell` provider.
 9. Play with visualization of the graph - Rover is your best friend.
+10. Create a skeleton of the directory for the project in the language of your choosing - nodejs, ts, golang, java etc. Be sure to create all you need, similar to nodejs express project generator. 
+
