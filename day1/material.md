@@ -21,6 +21,7 @@ HCL is designed to be both human-friendly and machine-friendly. It is easy to re
 
 ## main.tf
 
+Terraform is pretty agnostic when it comes to how you organize your files. If you run terraform in some directory `dir` it will scan all the subdirectories recursively looking for `.tf` files. In our case, we'll crum everything into main.tf - commonly used name for a tf file.
 `main.tf` is the default name for the main configuration file. It is the entry point for Terraform. It is the file that Terraform reads when you run `terraform apply` or `terraform plan`.
 
 ## ABC of Terraform
