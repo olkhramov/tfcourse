@@ -101,10 +101,8 @@ resource "resource_type" "resource_name2" {
 
 ## Providers
 
-While Terraform knows how to work with graphs & resolve dependencies, it's providers' responsibility to manage resources. Providers are responsible for understanding API interactions and exposing resources. Providers are the plugins that Terraform uses to manage resources.
-
+While Terraform knows how to work with graphs & resolve dependencies, it's providers' responsibility to manage resources.
 Providers can be thought of as Minecraft modes - each providing ways to interact with different resources.
-
 We can think of Terraform using providers as a set of libraries with custom data types and functions.
 
 ```mermaid
