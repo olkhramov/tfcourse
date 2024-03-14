@@ -38,7 +38,7 @@ Providers are to be specified in the `required_providers` block in the `terrafor
 Backend is the place where Terraform stores the state of the infrastructure. The backend is specified in the `backend` block.
 For now we will be using `local` backend, which stores the state on the local machine.
 
-```hcl
+```terraform
 terraform {
 
   backend "local" {
@@ -62,7 +62,7 @@ terraform {
 
 Resources are the components of the infrastructure that Terraform will manage. Resources are to be specified with a keyword `resource` followed by the resource type and the resource name.
 
-```hcl
+```terraform
 resource "<resource_type>" "<resource_name>" {
   resource_argument1 = "value1"
   resource_argument2 = "value2"
@@ -73,7 +73,7 @@ resource "<resource_type>" "<resource_name>" {
 
 Data sources are used to fetch data that is not defined in the configuration. Data sources are to be specified with a keyword `data` followed by the data source type and the data source name.
 
-```hcl
+```terraform
 data "<data_source_type>" "<data_source_name>" {
   data_source_argument1 = "value1"
   data_source_argument2 = "value2"
@@ -86,7 +86,7 @@ Terraform uses a graph to represent the infrastructure and to resolve dependenci
 
 Depencies can be specified in two ways, for now we'll be using the implicit way.
 
-```hcl
+```terraform
 resource "resource_type" "resource_name" {
   resource_argument1 = "value1"
   resource_argument2 = "value2"
@@ -118,7 +118,7 @@ graph TD
 Terraform decides which provider to use based on the resource type. 
 Although I'm not aware of any popular providers having resources with the same name, it's possible to specify the provider explicitly for each resource.
 
-```hcl
+```terraform
 provider "parseltongue" {
   alias = "provider_a"
   version = "1.0.0"
@@ -150,7 +150,7 @@ Documentation: https://www.terraform.io/docs/providers/local/index.html
 
 - `local_file`
 
-```hcl
+```terraform
 resource "local_file" "example" {
   content  = "example"
   filename = "example.txt"
@@ -159,7 +159,7 @@ resource "local_file" "example" {
 
 - `local_sensitive_file`
 
-```hcl
+```terraform
 resource "local_sensitive_file" "example" {
   content  = "example"
   filename = "example.txt"
@@ -170,7 +170,7 @@ resource "local_sensitive_file" "example" {
 
 - `local_file`
 
-```hcl
+```terraform
 data "local_file" "example" {
   filename = "${local_file.example.filename}"
 }
@@ -178,7 +178,7 @@ data "local_file" "example" {
 
 - `local_sensitive_file`
 
-```hcl
+```terraform
 data "local_sensitive_file" "example" {
   filename = "${local_sensitive_file.example.filename}"
 }
