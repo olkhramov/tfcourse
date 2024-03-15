@@ -265,3 +265,19 @@ Local values can be thought of as variables in the function scope.
 Terraform state is a snapshot of the infrastructure's state at a certain point in time. Terraform state is used to map Terraform-managed resources to real-world resources.
 
 If we're using a local backend, the terraform state is stored in a file named `terraform.tfstate` (or any other file you've specified in the configuration). This file is created when you run `terraform apply` and is used to map the resources to the configuration.
+
+
+## Exercises
+
+1. Create a docker container using the docker provider.
+2. Parametrize the docker file with locals & variables.
+   1. Change the base image to a variable.
+   2. Change the port to a variable.
+3. Extract tarball or zip and use files as configs for the docker container.
+4. Emulate docker compose with terraform.
+   1. Create a network.
+   2. Create a volume.
+   3. Create two containers
+      1. Echo server
+      2. JSON retriever: server that would serve set of json files from a directory (volume).
+   4. Use the network and volume to connect the containers.
