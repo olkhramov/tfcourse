@@ -194,3 +194,5 @@ resource "local_file" "nginx" {
 1. Docker compose with dynamic blocks for containers
 2. Mounting volumes with dynamic blocks
 3. Nginx configuration with templates
+4. Triggers for the nginx configuration
+5. Docker containers in one network, with template file use for nginx configuration.
