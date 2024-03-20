@@ -109,6 +109,76 @@ The iterator argument (optional) sets the name of a temporary variable that repr
 The labels argument (optional) is a list of strings that specifies the block labels, in order, to use for each generated block. You can use the temporary iterator variable in this value.
 The nested content block defines the body of each generated block. You can use the temporary iterator variable inside this block.
 
+## Templates
+
+Terraform has a built-in template rendering engine. It can be used to render files with variables.
+
+```terraform
+data "template_file" "example" {
+  template = file("${path.module}/example.tpl")
+  vars = {
+    name = "example"
+  }
+}
+
+resource "local_file" "example" {
+  filename = "${path.module}/example.txt"
+  content = data.template_file.example.rendered
+}
+```
+
+Templates can use any of the Terraform language's built-in functions, including those for working with collections like `for` and `for_each`.
+
+```terraform
+data "template_file" "example" {
+  template = <<EOF
+  % for key, value in var.example:
+  ${key} = ${value}
+  % endfor
+  EOF
+  vars = {
+    example = {
+      key1 = "value1"
+      key2 = "value2"
+    }
+  }
+}
+```
+
+
+### Nginx configuration
+
+```nginx
+
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+```terraform
+
+data "template_file" "nginx" {
+  template = file("${path.module}/nginx.tpl")
+  vars = {
+    port = 8080
+  }
+}
+
+resource "local_file" "nginx" {
+  filename = "${path.module}/nginx.conf"
+  content = data.template_file.nginx.rendered
+}
+```
+
 
 ### Exercises
 
