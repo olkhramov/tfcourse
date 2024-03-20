@@ -1,0 +1,18 @@
+    http {
+%{ for container in containers ~}
+        upstream ${container.name} {
+            server ${container.name}:${container.port}
+        }
+%{ endfor ~}
+
+        server {
+            listen 80;
+
+           
+%{ for container in containers ~}
+    location /${container.name}/ {
+        proxy_pass http://${container.name}:${container.port}
+    }
+%{ endfor ~}
+        }
+    }
