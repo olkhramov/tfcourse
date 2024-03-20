@@ -145,6 +145,16 @@ data "template_file" "example" {
 }
 ```
 
+Using templatefiles is as follows:
+```terraform
+resourse "docker_image" "example" {
+  count = 3
+  name = "example-${count.index}"
+  build {
+    context = templatefile("${path.module}/example", { name = "example-${count.index}" })
+  }  
+}
+```
 
 ### Nginx configuration
 
@@ -153,13 +163,12 @@ data "template_file" "example" {
 server {
     listen 80;
     server_name example.com;
+    upstream app {
+        server url:port;
+    }
 
     location / {
-        proxy_pass http://localhost:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://app;
     }
 }
 ```
